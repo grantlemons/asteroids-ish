@@ -2,8 +2,18 @@
 name = "asteroids"
 version = "0.1.0"
 edition = "2021"
+publish = false
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "asteroids_bin"
+path = "src/bin/bin.rs"
+doc = false
+
+[lib]
+name = "asteroids_lib"
+path = "src/lib/lib.rs"
 
 [profile.dev]
 opt-level = 1
@@ -13,4 +23,4 @@ opt-level = 3
 
 [dependencies]
 # remove dynamic feature before release
-bevy = { version = "0.9.1", feature=["dynamic"] }
+bevy = { version = "0.9.1", features = ["dynamic"] }
