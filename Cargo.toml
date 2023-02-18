@@ -12,4 +12,5 @@ opt-level = 1
 opt-level = 3
 
 [dependencies]
-bevy = { version = "0.9.1" }
+# remove dynamic feature before release
+bevy = { version = "0.9.1", feature=["dynamic"] }
