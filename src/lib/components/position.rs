@@ -1,6 +1,6 @@
 use super::Velocity;
 
-#[derive(Default, Debug, super::Component, PartialEq)]
+#[derive(super::Component, Default, Debug, PartialEq)]
 pub struct Position {
     pub x: f32,
     pub y: f32,
