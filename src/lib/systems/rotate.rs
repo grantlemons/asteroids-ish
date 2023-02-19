@@ -7,13 +7,13 @@ pub fn player_rotation(
 ) {
     let mut rotation_value: f32 = 0.0;
     if keys.any_pressed([KeyCode::Left, KeyCode::A]) {
-        rotation_value = 0.02;
+        rotation_value = 0.6;
     } else if keys.any_pressed([KeyCode::Right, KeyCode::D]) {
-        rotation_value = -0.02;
+        rotation_value = -0.6;
     }
 
     for mut rotation in query.iter_mut() {
-        let new_value = rotation.get() + rotation_value;
-        rotation.set(new_value);
+        let new_value = rotation.get_degrees() + rotation_value;
+        rotation.set_degrees(new_value);
     }
 }

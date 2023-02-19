@@ -13,7 +13,7 @@ impl Kinematics {
         KinematicsBuilder::new()
     }
     pub fn rotation<T: Into<f32>>(&mut self, angle: T) {
-        self.rotation.set(angle);
+        self.rotation.set_degrees(angle);
     }
     pub fn position<T: Into<f32>, T2: Into<f32>>(&mut self, x: T, y: T2) {
         self.position = Position {

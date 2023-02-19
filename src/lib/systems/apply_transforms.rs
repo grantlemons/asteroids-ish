@@ -8,6 +8,6 @@ pub fn apply_position(mut query: super::Query<(&mut super::Transform, &Position)
 
 pub fn apply_rotation(mut query: super::Query<(&mut super::Transform, &Rotation)>) {
     for (mut transform, rotation) in query.iter_mut() {
-        transform.rotation = super::Quat::from_rotation_z(rotation.get());
+        transform.rotation = super::Quat::from_rotation_z(rotation.get_radians());
     }
 }

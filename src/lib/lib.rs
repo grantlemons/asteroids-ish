@@ -24,6 +24,7 @@ pub mod systems {
     mod apply_transforms;
     mod damage_detection;
     mod rotate;
+    mod spawn_camera;
     mod spawn_player;
     mod thrust;
     mod transform;
@@ -31,6 +32,7 @@ pub mod systems {
     pub use accelerate::accelerate_components;
     pub use apply_transforms::{apply_position, apply_rotation};
     pub use rotate::player_rotation;
+    pub use spawn_camera::spawn_camera;
     pub use spawn_player::spawn_player;
     pub use thrust::player_thrust;
     pub use transform::transform_components;

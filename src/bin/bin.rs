@@ -12,12 +12,7 @@ fn main() {
         .insert_resource(ClearColor(CLEAR))
         .add_plugins(DefaultPlugins)
         .add_plugin(MovementPlugin)
-        .add_startup_system_to_stage(StartupStage::PreStartup, setup)
+        .add_startup_system_to_stage(StartupStage::PreStartup, spawn_camera)
         .add_startup_system(spawn_player)
         .run();
-}
-
-fn setup(mut commands: Commands) {
-    let camera = Camera2dBundle::default();
-    commands.spawn(camera);
 }

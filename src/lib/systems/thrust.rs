@@ -14,9 +14,9 @@ pub fn player_thrust(
 ) {
     for mut thrust_entity in query.iter_mut() {
         let thrust_value: f32 = if keys.any_pressed([KeyCode::Up, KeyCode::W]) {
-            0.3
+            0.02
         } else {
-            taper_off(thrust_entity.get(), 0.9)
+            taper_off(thrust_entity.get(), 0.95)
         };
         thrust_entity.set(thrust_value);
     }

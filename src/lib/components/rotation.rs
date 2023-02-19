@@ -3,15 +3,19 @@
 pub struct Rotation(pub f32);
 
 impl Rotation {
-    pub fn new<T: Into<f32>>(angle: T) -> Self {
-        Self(angle.into())
+    pub fn new<T: Into<f32>>(degrees: T) -> Self {
+        Self(degrees.into())
     }
 
-    pub fn get(&self) -> f32 {
+    pub fn get_degrees(&self) -> f32 {
         self.0
     }
 
-    pub fn set<T: Into<f32>>(&mut self, new: T) {
+    pub fn get_radians(&self) -> f32 {
+        self.0.to_radians()
+    }
+
+    pub fn set_degrees<T: Into<f32>>(&mut self, new: T) {
         self.0 = new.into() % 365.0;
     }
 }
@@ -32,7 +36,7 @@ impl<T: Into<f32>> std::ops::Add<T> for Rotation {
 
 impl<T: Into<f32>> std::ops::AddAssign<T> for Rotation {
     fn add_assign(&mut self, rhs: T) {
-        self.set((self.get() + rhs.into()) % 365.0);
+        self.set_degrees((self.get_degrees() + rhs.into()) % 365.0);
     }
 }
 
