@@ -21,6 +21,7 @@ pub mod systems {
     use bevy::prelude::*;
 
     mod accelerate;
+    mod apply_transforms;
     mod damage_detection;
     mod rotate;
     mod spawn_player;
@@ -28,6 +29,7 @@ pub mod systems {
     mod transform;
 
     pub use accelerate::accelerate_components;
+    pub use apply_transforms::{apply_position, apply_rotation};
     pub use rotate::player_rotation;
     pub use spawn_player::spawn_player;
     pub use thrust::player_thrust;
