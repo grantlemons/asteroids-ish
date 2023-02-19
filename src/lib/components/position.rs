@@ -6,6 +6,15 @@ pub struct Position {
     pub y: f32,
 }
 
+impl Position {
+    pub fn new<T: Into<f32>, T2: Into<f32>>(x: T, y: T2) -> Self {
+        Self {
+            x: x.into(),
+            y: y.into(),
+        }
+    }
+}
+
 impl std::fmt::Display for Position {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "({} {})", self.x, self.y)

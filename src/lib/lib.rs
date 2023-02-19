@@ -12,6 +12,7 @@ pub mod components {
     pub use health::Health;
     pub use name::Name;
     pub use player::Player;
+    pub use player::PlayerBuilder;
     pub use position::Position;
     pub use rotation::Rotation;
     pub use thrust::Thrust;
@@ -40,4 +41,5 @@ pub mod bundles {
 
     mod kinematics;
     pub use kinematics::Kinematics;
+    pub use kinematics::KinematicsBuilder;
 }
