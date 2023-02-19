@@ -74,10 +74,10 @@ impl KinematicsBuilder {
     }
     pub fn build(self) -> Kinematics {
         Kinematics {
-            rotation: self.rotation.unwrap_or(Rotation::default()),
-            position: self.position.unwrap_or(Position::default()),
-            velocity: self.velocity.unwrap_or(Velocity::default()),
-            thrust: self.thrust.unwrap_or(Thrust::default()),
+            rotation: self.rotation.unwrap_or_default(),
+            position: self.position.unwrap_or_default(),
+            velocity: self.velocity.unwrap_or_default(),
+            thrust: self.thrust.unwrap_or_default(),
         }
     }
 }

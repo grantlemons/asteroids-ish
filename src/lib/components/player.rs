@@ -54,8 +54,8 @@ impl PlayerBuilder {
     }
     pub fn build(self) -> Player {
         Player {
-            name: self.name.unwrap_or(Name::default()),
-            health: self.health.unwrap_or(Health::default()),
+            name: self.name.unwrap_or_default(),
+            health: self.health.unwrap_or_default(),
             kinematics: self.kinematics.build(),
         }
     }
