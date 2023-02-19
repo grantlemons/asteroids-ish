@@ -11,5 +11,8 @@ fn main() {
     App::new()
         .insert_resource(ClearColor(CLEAR))
         .add_plugins(DefaultPlugins)
+        .add_plugin(KinematicsPlugin)
+        .add_plugin(MovementPlugin)
+        .add_startup_system(spawn_player)
         .run();
 }

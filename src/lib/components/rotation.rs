@@ -35,3 +35,9 @@ impl<T: Into<f32>> std::ops::AddAssign<T> for Rotation {
         self.set((self.get() + rhs.into()) % 365.0);
     }
 }
+
+impl From<f32> for Rotation {
+    fn from(value: f32) -> Self {
+        Self::new(value % 365.0)
+    }
+}

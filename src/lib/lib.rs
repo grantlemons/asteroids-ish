@@ -23,15 +23,24 @@ pub mod systems {
 
     mod accelerate;
     mod damage_detection;
+    mod rotate;
     mod spawn_player;
+    mod thrust;
     mod transform;
 
     pub use accelerate::accelerate_components;
+    pub use rotate::player_rotation;
     pub use spawn_player::spawn_player;
+    pub use thrust::player_thrust;
     pub use transform::transform_components;
 }
 pub mod plugins {
-    // use bevy::prelude::{App, Plugin};
+    use bevy::prelude::{App, Plugin};
+
+    mod kinematics;
+    mod movement;
+    pub use kinematics::KinematicsPlugin;
+    pub use movement::MovementPlugin;
 }
 pub mod resources {
     // use bevy::prelude::Resource;
