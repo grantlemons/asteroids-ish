@@ -4,7 +4,7 @@ pub struct Rotation(pub f32);
 
 impl Rotation {
     pub fn new<T: Into<f32>>(degrees: T) -> Self {
-        Self(degrees.into())
+        Self(degrees.into().rem_euclid(365.0))
     }
 
     pub fn get_degrees(&self) -> f32 {
@@ -16,7 +16,7 @@ impl Rotation {
     }
 
     pub fn set_degrees<T: Into<f32>>(&mut self, new: T) {
-        self.0 = new.into() % 365.0;
+        self.0 = new.into().rem_euclid(365.0);
     }
 }
 
@@ -30,18 +30,18 @@ impl<T: Into<f32>> std::ops::Add<T> for Rotation {
     type Output = Self;
 
     fn add(self, other: T) -> Self::Output {
-        Self((self.0 + other.into()) % 365.0)
+        Self::new(self.get_degrees() + other.into())
     }
 }
 
 impl<T: Into<f32>> std::ops::AddAssign<T> for Rotation {
     fn add_assign(&mut self, rhs: T) {
-        self.set_degrees((self.get_degrees() + rhs.into()) % 365.0);
+        self.set_degrees(self.get_degrees() + rhs.into());
     }
 }
 
 impl From<f32> for Rotation {
     fn from(value: f32) -> Self {
-        Self::new(value % 365.0)
+        Self::new(value)
     }
 }

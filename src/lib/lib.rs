@@ -27,6 +27,7 @@ pub mod systems {
     mod spawn_camera;
     mod spawn_player;
     mod thrust;
+    mod track_player;
     mod transform;
 
     pub use accelerate::accelerate_components;
@@ -35,6 +36,7 @@ pub mod systems {
     pub use spawn_camera::spawn_camera;
     pub use spawn_player::spawn_player;
     pub use thrust::player_thrust;
+    pub use track_player::track_player;
     pub use transform::transform_components;
 }
 pub mod plugins {
