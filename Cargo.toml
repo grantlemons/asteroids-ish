@@ -22,7 +22,4 @@ opt-level = 1
 opt-level = 3
 
 [dependencies]
-# remove dynamic feature before release
-# dynamic feature also means that vscode debugging will not work
-# dynamic makes it build faster
-bevy = { version = "0.9.1", features = ["dynamic"] }
+bevy = { version = "0.9.1" }
