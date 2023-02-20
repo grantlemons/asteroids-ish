@@ -2,7 +2,7 @@ use super::{Camera, Query, Transform, With, Without};
 use crate::components::Player;
 
 const FOLLOW_INTENSITY: f32 = 0.1;
-const THRESHOLD: f32 = 0.05;
+const THRESHOLD: f32 = 0.1;
 
 fn apply_threshold<T: Into<f32> + From<f32>>(value: T, snap_value: f32) -> T {
     let val_float: f32 = value.into();
