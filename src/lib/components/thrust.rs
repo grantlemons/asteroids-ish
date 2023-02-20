@@ -11,7 +11,7 @@ impl Thrust {
     }
 
     pub fn set<T: Into<f32>>(&mut self, new: T) {
-        self.0 = new.into().clamp(0.0, 1.0);
+        self.0 = new.into().clamp(0.0, 0.2);
     }
 }
 

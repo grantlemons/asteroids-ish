@@ -12,7 +12,6 @@ fn main() {
         .insert_resource(ClearColor(CLEAR))
         .add_plugins(DefaultPlugins)
         .add_plugin(MovementPlugin)
-        .add_system(track_player)
         .add_startup_system_to_stage(StartupStage::PreStartup, spawn_camera)
         .add_startup_system(spawn_player)
         .run();
