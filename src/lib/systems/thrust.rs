@@ -22,7 +22,7 @@ pub fn player_thrust(
 ) {
     for mut thrust_entity in query.iter_mut() {
         let thrust_value: f32 = if keys.any_pressed([KeyCode::Up, KeyCode::W]) {
-            thrust_entity.get() + 0.1
+            thrust_entity.get() + 0.008
         } else {
             apply_threshold(taper_off(thrust_entity.get(), 0.94), 0.0)
         };
