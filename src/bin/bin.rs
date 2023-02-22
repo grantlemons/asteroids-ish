@@ -1,6 +1,6 @@
-#[allow(unused_imports)]
 use asteroids_lib as lib;
 use bevy::prelude::*;
+use bevy_web_fullscreen::FullViewportPlugin;
 
 #[allow(unused_imports)]
 use lib::{components::*, plugins::*, systems::*};
@@ -8,13 +8,19 @@ use lib::{components::*, plugins::*, systems::*};
 const CLEAR: Color = Color::rgb(0.1, 0.1, 0.1);
 
 fn main() {
-    App::new()
+    create_app().run();
+}
+
+fn create_app() -> App {
+    let app = App::new()
         .insert_resource(ClearColor(CLEAR))
         .add_plugins(DefaultPlugins.set(custom_window_plugin()))
         .add_plugin(MovementPlugin)
         .add_startup_system_to_stage(StartupStage::PreStartup, spawn_camera)
-        .add_startup_system(spawn_player)
-        .run();
+        .add_startup_system(spawn_player);
+    // #[cfg(target_family = "wasm")]
+    app.add_plugin(FullViewportPlugin);
+    app
 }
 
 fn custom_window_plugin() -> WindowPlugin {
