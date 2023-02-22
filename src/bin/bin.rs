@@ -8,12 +8,11 @@ use lib::{components::*, plugins::*, systems::*};
 const CLEAR: Color = Color::rgb(0.1, 0.1, 0.1);
 
 fn main() {
-    create_app().run();
+    initialize_app(&mut App::new()).run();
 }
 
-fn create_app() -> App {
-    let app = App::new()
-        .insert_resource(ClearColor(CLEAR))
+fn initialize_app<'a>(app: &'a mut App) -> &'a mut App {
+    app.insert_resource(ClearColor(CLEAR))
         .add_plugins(DefaultPlugins.set(custom_window_plugin()))
         .add_plugin(MovementPlugin)
         .add_startup_system_to_stage(StartupStage::PreStartup, spawn_camera)
