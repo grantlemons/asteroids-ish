@@ -1,14 +1,15 @@
 use super::{Input, KeyCode, Res};
 use crate::components::{Player, Rotation};
+use crate::keybindings::{LEFT, RIGHT};
 
 pub fn player_rotation(
     mut query: super::Query<&mut Rotation, super::With<Player>>,
     keys: Res<Input<KeyCode>>,
 ) {
     let mut rotation_value: f32 = 0.0;
-    if keys.any_pressed([KeyCode::Left, KeyCode::A]) {
+    if keys.any_pressed(LEFT) {
         rotation_value = 1.6;
-    } else if keys.any_pressed([KeyCode::Right, KeyCode::D]) {
+    } else if keys.any_pressed(RIGHT) {
         rotation_value = -1.6;
     }
 

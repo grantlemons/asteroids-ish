@@ -1,5 +1,6 @@
 use super::{Input, KeyCode, Res};
 use crate::components::{Player, Thrust};
+use crate::keybindings::UP;
 
 const THRESHOLD: f32 = 0.005;
 
@@ -21,7 +22,7 @@ pub fn player_thrust(
     keys: Res<Input<KeyCode>>,
 ) {
     for mut thrust_entity in query.iter_mut() {
-        let thrust_value: f32 = if keys.any_pressed([KeyCode::Up, KeyCode::W]) {
+        let thrust_value: f32 = if keys.any_pressed(UP) {
             thrust_entity.get() + 0.008
         } else {
             apply_threshold(taper_off(thrust_entity.get(), 0.94), 0.0)

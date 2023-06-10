@@ -17,6 +17,7 @@ pub mod components {
     pub use thrust::Thrust;
     pub use velocity::Velocity;
 }
+
 pub mod systems {
     use bevy::prelude::*;
 
@@ -39,6 +40,7 @@ pub mod systems {
     pub use track_player::track_player;
     pub use transform::transform_components;
 }
+
 pub mod plugins {
     use bevy::prelude::{App, Plugin};
 
@@ -47,9 +49,11 @@ pub mod plugins {
     pub use kinematics::KinematicsPlugin;
     pub use movement::MovementPlugin;
 }
+
 pub mod resources {
     // use bevy::prelude::Resource;
 }
+
 pub mod bundles {
     use bevy::prelude::Bundle;
 
@@ -60,3 +64,5 @@ pub mod bundles {
     pub use player::PlayerBundle;
     pub use player::PlayerBundleBuilder;
 }
+
+pub mod keybindings;
