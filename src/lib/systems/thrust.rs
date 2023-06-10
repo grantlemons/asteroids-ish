@@ -2,19 +2,12 @@ use super::{Input, KeyCode, Res};
 use crate::components::{Player, Thrust};
 use crate::keybindings::UP;
 
-const THRESHOLD: f32 = 0.005;
+const SIGNIFICANT_THRUST_THRESHOLD: f32 = 0.005;
+const ADDITION_PER_PRESSED_TIMESTEP: f32 = 0.008;
+const COOEF_LOSS_PER_UNPRESSED_TIMESTEP: f32 = 0.06;
 
 fn taper_off(value: f32, coefficient: f32) -> f32 {
-    value * coefficient
-}
-
-fn apply_threshold<T: Into<f32> + From<f32>>(value: T, snap_value: f32) -> T {
-    let val_float: f32 = value.into();
-    if val_float.abs() < (snap_value + THRESHOLD) {
-        T::from(0.0)
-    } else {
-        T::from(val_float)
-    }
+    value * (1.0 - coefficient)
 }
 
 pub fn player_thrust(
@@ -23,9 +16,13 @@ pub fn player_thrust(
 ) {
     for mut thrust_entity in query.iter_mut() {
         let thrust_value: f32 = if keys.any_pressed(UP) {
-            thrust_entity.get() + 0.008
+            thrust_entity.get() + ADDITION_PER_PRESSED_TIMESTEP
         } else {
-            apply_threshold(taper_off(thrust_entity.get(), 0.94), 0.0)
+            super::apply_threshold(
+                taper_off(thrust_entity.get(), COOEF_LOSS_PER_UNPRESSED_TIMESTEP),
+                0.0,
+                SIGNIFICANT_THRUST_THRESHOLD,
+            )
         };
         thrust_entity.set(thrust_value);
     }

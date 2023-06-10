@@ -21,6 +21,15 @@ pub mod components {
 pub mod systems {
     use bevy::prelude::*;
 
+    fn apply_threshold<T: From<f32> + Into<f32>>(value: T, snap_value: f32, threshold: f32) -> T {
+        let val_float: f32 = value.into();
+        if val_float.abs() < (snap_value + threshold) {
+            0.0.into()
+        } else {
+            val_float.into()
+        }
+    }
+
     mod accelerate;
     mod apply_transforms;
     mod damage_detection;
