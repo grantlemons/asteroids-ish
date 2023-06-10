@@ -4,10 +4,6 @@ on:
     branches: ["main"]
     paths-ignore: [".gitignore", "CODEOWNERS", ".github/workflows/rust.yml"]
 
-env:
-  AWS_REGION: us-east-1
-  BUCKET_NAME: asteroids-wasm
-
 permissions:
   contents: read
 
