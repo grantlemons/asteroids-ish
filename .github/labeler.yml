@@ -1,0 +1,9 @@
+actions: ".github/**"
+
+documentation: "**/*.md"
+
+systems: "src/lib/systems/**"
+
+components: "src/lib/components/**"
+
+keybindings: "src/lib/keybindings.rs"
