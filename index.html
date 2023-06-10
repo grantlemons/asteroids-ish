@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
-        <style>
-            body {
-                margin: 0px;
-                display: flex;
-                overflow: hidden;
-            }
-            canvas {
-                touch-action: none;
-            }
-        </style>
-    </head>
+
+<head>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+  <style>
+    body {
+      margin: 0px;
+      display: flex;
+      overflow: hidden;
+    }
+
+    canvas {
+      touch-action: none;
+    }
+  </style>
+  <link rel="preload" href="/asteroids_bin_bg.wasm" as="fetch" type="application/wasm" crossorigin="" />
+  <link rel="modulepreload" href="/asteroids_bin.js" />
+</head>
+
+<body>
+  <script type="module">
+    import init from "/asteroids_bin.js";
+    init("/asteroids_bin_bg.wasm");
+  </script>
+</body>
+
 </html>

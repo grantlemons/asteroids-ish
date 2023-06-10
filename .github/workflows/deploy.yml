@@ -1,0 +1,56 @@
+name: Deploy to Amazon S3
+on:
+  push:
+    branches: ["main"]
+
+env:
+  AWS_REGION: us-east-1
+  BUCKET_NAME: asteroids-wasm
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - uses: jetli/wasm-bindgen-action@v0.2.0
+        with:
+          version: "latest"
+
+      - uses: actions/checkout@v3
+
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: wasm-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Install target
+        run: rustup target add wasm32-unknown-unknown
+
+      - name: Build
+        run: cargo build --verbose --release --target wasm32-unknown-unknown
+
+      - name: Bindgen
+        run: wasm-bindgen --out-dir ./dist/ --target web ./target/wasm32-unknown-unknown/release/asteroids_bin.wasm && mv index.html dist/index.html
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Deploy to S3
+        run: |
+          mkdir sync/
+          cp **/index.html dist/asteroids_bin_bg.wasm dist/asteroids_bin.js sync/
+          aws s3 sync sync/ s3://${{ env.BUCKET_NAME }}/
