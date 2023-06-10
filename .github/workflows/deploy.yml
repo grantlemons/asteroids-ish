@@ -44,10 +44,10 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+          aws-region: ${{ vars.AWS_REGION }}
 
       - name: Deploy to S3
         run: |
           mkdir sync/
           cp **/index.html dist/asteroids_bin_bg.wasm dist/asteroids_bin.js sync/
-          aws s3 sync sync/ s3://${{ env.BUCKET_NAME }}/
+          aws s3 sync sync/ s3://${{ vars.BUCKET_NAME }}/
