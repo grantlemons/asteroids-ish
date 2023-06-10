@@ -47,7 +47,9 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Deploy to S3
+        with:
+          BUCKET_NAME: ${{ env.BUCKET_NAME }}
         run: |
           mkdir sync/
           cp **/index.html dist/asteroids_bin_bg.wasm dist/asteroids_bin.js sync/
-          aws s3 sync sync/ s3://${{ env.BUCKET_NAME }}/
+          aws s3 sync sync/ s3://$BUCKET_NAME/
