@@ -21,6 +21,10 @@ opt-level = 1
 [profile.dev.package."*"]
 opt-level = 3
 
+[profile.release]
+opt-level = 'z'
+lto = "thin"
+
 [dependencies]
 bevy = { version = "0.9.1" }
 bevy_web_fullscreen = "0.2.1"
